@@ -36,18 +36,6 @@ const NavBar = styled.header`
 
 
 const Header = ({ theme, toggleTheme }) => {
-  const links = [
-    {
-      id: 1,
-      path: '/',
-      text: 'BOOKS',
-    },
-    {
-      id: 2,
-      path: '/categories',
-      text: 'CATEGORIES',
-    },
-  ];
   return (
     <NavBar>
         <div>
@@ -56,9 +44,6 @@ const Header = ({ theme, toggleTheme }) => {
       <div>
         <DarkButton theme={theme} toggleTheme={toggleTheme} />
       </div>
-      {/* <div className="avatar">
-        <ImUser />
-      </div> */}
     </NavBar>
   );
 };

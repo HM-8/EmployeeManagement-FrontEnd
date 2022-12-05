@@ -4,11 +4,11 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { DELETE_EMPLOYEE_BY_ID, UPDATE_EMPLOYEE_BY_ID } from "../redux/types";
-import Modal from "./Modal";
+import Modal from "./modal/Modal";
 import { useState } from "react";
 import Select from "./Select";
 import { setEmployeeSlice } from "../redux/slice/employee";
-import { Button } from "./modal.styles";
+import { Button } from "./modal/modal.styles";
 
 const slideIn = keyframes`
 0% {
@@ -180,7 +180,7 @@ const Employee = ({ name, dob, gender, salary, id }) => {
     );
   };
   const handleDeleteClick = () => {
-    dispatch({ type: DELETE_EMPLOYEE_BY_ID, id: id })
+    dispatch({ type: DELETE_EMPLOYEE_BY_ID, id: id });
     setActiveDelete(false);
   };
 
@@ -217,12 +217,8 @@ const Employee = ({ name, dob, gender, salary, id }) => {
         <span className="edit" onClick={() => handleClick()}>
           <AiOutlineEdit />{" "}
         </span>
-        <span
-          className="delete"
-          onClick={() => setActiveDelete(true)}
-        >
-              <RiDeleteBin5Line />
-          
+        <span className="delete" onClick={() => setActiveDelete(true)}>
+          <RiDeleteBin5Line />
         </span>
         <Modal
           active={activeDelete}
@@ -234,7 +230,7 @@ const Employee = ({ name, dob, gender, salary, id }) => {
             </Button>
           }
         >
-         Are you sure you want to delete this? 
+          Are you sure you want to delete this?
         </Modal>
 
         <Modal
@@ -273,7 +269,6 @@ const Employee = ({ name, dob, gender, salary, id }) => {
             value={data.dob}
             className="modalinput"
           />
-          {/* <StyledButton type="submit" onClick={()=>handleSubmit()}>ADD</StyledButton> */}
         </Modal>
       </div>
     </Container>

@@ -113,17 +113,6 @@ function EmployeeInput() {
         <div>
           <h2>Add New Employees</h2>
         </div>
-        {/* <button onClick={() => dispatch({type:CREATE_EMPLOYEE,employee:{...data}})}>addToCart</button> */}
-
-        {/* <button onClick={() => dispatch(addToCart(employee.id))}>
-      Remove From Cart
-    </button> */}
-        {/* <button onClick={() => dispatch({type:GET_EMPLOYEES})}>
-      Get Employee
-    </button> */}
-        {/* <button onClick={() => dispatch(GET_EMPLOYEES)}>Get Employees</button> */}
-
-        {/* <div><p>{data[0].text}</p> <button>Edit</button><button>Delete</button></div> */}
         <div>
           <input
             type="text"
@@ -148,10 +137,6 @@ function EmployeeInput() {
             value={data.dob}
           />
             <StyledButton type="submit" onClick={()=>handleSubmit()}>ADD</StyledButton>
-          {/* <Button text="ADD" onClick={handleSubmit} /> */}
-          {/* <button type="submit" onClick={() => handleSubmit()}>
-      Submit
-    </button> */}
         </div>
       </Container>
     </div>

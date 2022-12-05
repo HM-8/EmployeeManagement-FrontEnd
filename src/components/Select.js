@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 const SelectContainer = styled.div`
@@ -75,10 +74,5 @@ const Select = ({ selectValue, handleChange }) => {
     </SelectContainer>
   );
 };
-
-// Select.propTypes = {
-// selectValue: PropTypes.string.isRequired,
-// handleChange: PropTypes.func.isRequired,
-// };
 
 export default Select;
