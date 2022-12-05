@@ -20,11 +20,13 @@ export function* createEmployeeSaga(action) {
 }
 
 export function* updateEmployeeSaga(action) {
-    yield updateEmployeeAPI(action.user)
-    yield put(editEmployeeSlice(action.user))
+    console.log("action",action)
+    yield updateEmployeeAPI(action.data)
+    yield put(editEmployeeSlice(action.data))
 }
 
 export function* deleteEmployeeByIdSaga(action) {
+    console.log("the action",action)
     yield deleteEmployeeByIdAPI(action.id)
     yield put(deleteEmployeeSlice(action.id))
 }

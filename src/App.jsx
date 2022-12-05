@@ -1,10 +1,76 @@
 import "./App.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { CREATE_EMPLOYEE, getEmployees, getUsersFetch, GET_EMPLOYEES } from "./redux/actions";
-
+import styled from "styled-components";
 import { setEmployeeSlice } from "./redux/slice/employee";
 import { CREATE_EMPLOYEE, GET_EMPLOYEES } from "./redux/types";
+import EmployeeInput from "./components/EmployeeInput";
+import EmployeeContainer from "./components/EmployeeContainer";
+import GlobalStyles from "./components/GlobalStyles";
+import Header from "./components/Header";
+import { darkTheme, lightTheme } from "./components/Themes";
+import useDarkMode from "./utilis/useDarkMode";
+import { ThemeProvider } from 'styled-components';
+import EmployeePage from "./EmployeePage";
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.9rem;
+
+  > div:first-of-type {
+    > h2 {
+      font-size: 1.17rem;
+      color: #888888;
+      @media (max-width: 768px) {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  > div:last-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > input {
+      width: 30%;
+      height: 2.813rem;
+      border: solid 1px #e8e8e8;
+      padding: 0 20px;
+      font-size: 1rem;
+      font-family: var(--font-1);
+      background: ${({ theme }) => theme.input};
+      transition: background 0.4s linear;
+
+      &::placeholder {
+        font-size: 0.8rem;
+        font-family: var(--font-1);
+        color: ${({ theme }) => theme.holder};
+        transition: color 0.4s linear;
+      }
+
+      &:focus {
+        outline: solid 1px var(--primary-color-1);
+      }
+    }
+
+    @media (max-width: 992px) {
+      > input {
+        width: 27%;
+      }
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+
+      > input {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+`;
 
 function App() {
   const dispatch = useDispatch();
@@ -17,34 +83,22 @@ function App() {
   };
   const handleSubmit = () => {
     dispatch({ type: CREATE_EMPLOYEE, data: data });
-    console.log("dasdf",data)
+    console.log("dasdf", data);
   };
   // React.useEffect(() => dispatch({ type: GET_EMPLOYEES }), [])
 
+  const [theme, themeToggler] = useDarkMode();
+  const themeMode = theme === "light" ? darkTheme : lightTheme;
   return (
-    <div className="App">
-      <h1>oubaifugb</h1>
-      {/* <button onClick={() => dispatch({type:CREATE_EMPLOYEE,employee:{...data}})}>addToCart</button> */}
-
-      {/* <button onClick={() => dispatch(addToCart(employee.id))}>
-        Remove From Cart
-      </button> */}
-      <button onClick={() => dispatch({type:GET_EMPLOYEES})}>
-        Get Employee
-      </button>
-      {/* <button onClick={() => dispatch(GET_EMPLOYEES)}>Get Employees</button> */}
-
-      {/* <div><p>{data[0].text}</p> <button>Edit</button><button>Delete</button></div> */}
-      <input
-        type="text"
-        onChange={handleChange("name")}
-        placeholder="Enter Name"
-        value={data.name}
-      />
-      <button type="submit" onClick={() => handleSubmit()}>
-        Submit
-      </button>
-    </div>
+    <>
+      <ThemeProvider theme={themeMode}>
+        <>
+          <GlobalStyles />
+          <Header theme={theme} toggleTheme={themeToggler} />
+          <EmployeePage />
+        </>
+      </ThemeProvider>
+    </>
   );
 }
 

@@ -8,15 +8,12 @@ export const getEmployeeByIdAPI = async (id) => axios.get(`/${id}`);
 
 export const createEmployeeAPI = async (employee) =>
   axios
-    .post(
-      `/`,
-      employee,
-    )
+    .post(`/`, employee)
     .then((response) => {
       console.log(response);
     })
     .catch((error) => {
-     console.log("error",error)
+      console.log("error", error);
     });
 
 export const updateEmployeeAPI = async (employee) =>

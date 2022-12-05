@@ -10,6 +10,7 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "./redux/sagas/index";
 import employee from './redux/slice/employee'
 import employees from "./redux/slice/employees"
+import Header from "./components/Header";
 const sagaMiddleware = createSagaMiddleware();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const rootReducer = combineReducers({employee,employees });

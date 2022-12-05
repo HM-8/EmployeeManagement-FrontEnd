@@ -4,6 +4,10 @@ const employee = createSlice({
     name: 'employee',
     initialState: {
         name: '',
+        salary:'',
+        gender:'',
+        dob:'',
+        id:'',
     },
     reducers: {
         setEmployeeSlice: (state, action) => {

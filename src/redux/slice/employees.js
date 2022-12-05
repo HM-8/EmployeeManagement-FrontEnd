@@ -4,6 +4,9 @@ const employees = createSlice({
     name: 'employees',
     initialState: [{
         name: '',
+        salary:'',
+        gender:'',
+        dob:''
     }],
     reducers: {
         getEmployeesSlice: (state, action) => {
