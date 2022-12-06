@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000/api/employee";
+axios.defaults.baseURL = "http://web-production-a365.up.railway.app/api/employee";
 
 export const getEmployeesAPI = async () => axios.get("/");
 
