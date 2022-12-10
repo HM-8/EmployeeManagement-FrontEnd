@@ -13,8 +13,8 @@ const Container = styled.div`
 
 function EmployeeContainer() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.employee);
-  const employees = useSelector((state) => state.employees);
+  const data = useSelector((state:any) => state.employee);
+  const employees = useSelector((state:any) => state.employees);
 
   useEffect(() => {
     dispatch({ type: GET_EMPLOYEES });
@@ -27,14 +27,20 @@ function EmployeeContainer() {
         <h2>Employee List</h2>
       </div>
       <hr />
-      {employees.map((item) => (
-        <Employee
-          name={item.name}
-          dob={item.dob}
-          gender={item.gender}
-          salary={item.salary}
-          id={item.id}
-        />
+      {employees.map((item:any) => (
+        <div key={item.id}>
+          <h3>
+            {/* <Link to={`/employees/${item.id}`}> */}
+              <Employee
+                name={item.name}
+                dob={item.dob}
+                gender={item.gender}
+                salary={item.salary}
+                id={item.id}
+              />
+            {/* </Link>  */}
+          </h3>
+        </div>
       ))}
     </Container>
   );

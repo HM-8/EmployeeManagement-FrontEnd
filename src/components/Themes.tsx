@@ -1,7 +1,7 @@
 export const lightTheme = {
-  body: '#e8e8e8',
+  body: 'rgba(255, 255, 255, 0)',
   text: '#363537',
-  primary: '#0290ff',
+  primary: 'hsl(26, 100%, 55%)',
   toggleBook: '#FFF',
   background: '#363537',
   input: '#fff',

@@ -9,6 +9,7 @@ import { useState } from "react";
 import Select from "./Select";
 import { setEmployeeSlice } from "../redux/slice/employee";
 import { Button } from "./modal/modal.styles";
+import React from "react";
 
 const slideIn = keyframes`
 0% {
@@ -38,7 +39,7 @@ const Container = styled.div`
   color: var(--black);
   transition: background 0.4s linear;
   border-radius: 12px;
-
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   > .first {
     font-family: var(--font-2);
 
@@ -65,7 +66,12 @@ const Container = styled.div`
     font-weight: 300;
     color: ${({ theme }) => theme.text};
     transition: color 0.4s linear;
-    // background-color:blue;
+
+    > input {
+      background: ${({ theme }) => theme.input};
+      transition: background 0.4s linear;
+      border-radius: 6px;
+    }
 
     > span {
       margin: 0.438rem 6.813rem 0.25rem 0;
@@ -101,9 +107,7 @@ const Container = styled.div`
     }
 
     > .info {
-      // display: flex;
       align-items: center;
-      // justify-content: space-between;
       width: 100%;
       font-size: 0.875rem;
       opacity: 0.5;
@@ -146,14 +150,23 @@ const Container = styled.div`
   }
 `;
 
-const Employee = ({ name, dob, gender, salary, id }) => {
+interface Employee {
+  id: string;
+  name: string;
+  dob: string;
+  gender: string;
+  salary: string;
+}
+const Employee = ({ name, dob, gender, salary, id }: Employee) => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.employee);
+  const data = useSelector((state: any) => state.employee);
   const [active, setActive] = useState(false);
   const [activeDelete, setActiveDelete] = useState(false);
-  const handleChange = (prop) => (event) => {
+
+  const handleChange = (prop: any) => (event: any) => {
     dispatch(setEmployeeSlice({ ...data, [prop]: event.target.value }));
   };
+  
   const handleSubmit = () => {
     dispatch({ type: UPDATE_EMPLOYEE_BY_ID, data: data });
     dispatch(
@@ -230,7 +243,7 @@ const Employee = ({ name, dob, gender, salary, id }) => {
             </Button>
           }
         >
-          Are you sure you want to delete this?
+          <p>Are you sure you want to delete this?</p>
         </Modal>
 
         <Modal
@@ -243,32 +256,33 @@ const Employee = ({ name, dob, gender, salary, id }) => {
             </Button>
           }
         >
-          <input
-            type="text"
-            onChange={handleChange("name")}
-            placeholder="Enter Name"
-            value={data.name}
-            className="modalinput"
-          />
-          <input
-            type="text"
-            onChange={handleChange("salary")}
-            placeholder="salary"
-            value={data.salary}
-            className="modalinput"
-          />
-          <Select
-            handleChange={handleChange("gender")}
-            selectValue={data.gender}
-            className="modalinput"
-          />
-          <input
-            type="date"
-            onChange={handleChange("dob")}
-            placeholder="Date"
-            value={data.dob}
-            className="modalinput"
-          />
+          <>
+            <input
+              type="text"
+              onChange={handleChange("name")}
+              placeholder="Enter Name"
+              value={data.name}
+              className="modalinput"
+            />
+            <input
+              type="text"
+              onChange={handleChange("salary")}
+              placeholder="salary"
+              value={data.salary}
+              className="modalinput"
+            />
+            <Select
+              handleChange={handleChange("gender")}
+              selectValue={data.gender}
+            />
+            <input
+              type="date"
+              onChange={handleChange("dob")}
+              placeholder="Date"
+              value={data.dob}
+              className="modalinput"
+            />
+          </>
         </Modal>
       </div>
     </Container>

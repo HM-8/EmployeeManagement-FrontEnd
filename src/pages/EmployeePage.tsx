@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import EmployeeContainer from "./components/EmployeeContainer";
-import EmployeeInput from "./components/EmployeeInput";
+import EmployeeContainer from "../components/EmployeeContainer";
+import EmployeeInput from "../components/EmployeeInput";
+import React from 'react'
 
 const EmployeesContainer = styled.div`
   padding: 1.813rem 6.25rem 16.563rem;

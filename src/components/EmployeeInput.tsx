@@ -69,13 +69,13 @@ const Container = styled.section`
 
 const StyledButton = styled.button`
   width: 11.5rem;
-  height: ${(props) => (props.update === 'update' ? '2.063rem' : '2.813rem')};
-  padding: ${(props) => (props.update === 'update' ? '0.438rem 1.188rem 0.5rem 1.375rem' : '0.801rem 1.188rem 0.886rem 1.375rem')};
+  height: 2.813rem;
+  padding: ${(props) => ('0.438rem 1.188rem 0.5rem 1.375rem')};
   border-radius: 3px;
   font-family: var(--font-2);
   background: ${({ theme }) => theme.primary};
   border: none;
-  color: var(--white);
+  color: #ffffff;
   cursor: pointer;
   transition: background 0.40s linear;
 
@@ -84,15 +84,15 @@ const StyledButton = styled.button`
   }
 
   @media (max-width: 650px){
-    width: ${(props) => (props.update === 'update' ? '8.063rem' : '11.5rem')};
-    height: ${(props) => (props.update === 'update' ? '2.813rem' : '2.813rem')};
+    width: ${(props) => ('8.063rem' )};
+    height: ${(props) => ('2.813rem')};
   }
 `;
 function EmployeeInput() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.employee);
+  const data = useSelector((state:any) => state.employee);
 
-  const handleChange = (prop) => (event) => {
+  const handleChange = (prop:any) => (event:any) => {
     dispatch(setEmployeeSlice({ ...data, [prop]: event.target.value }));
     console.log("data", data);
   };

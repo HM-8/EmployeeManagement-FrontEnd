@@ -4,34 +4,43 @@ import { addEmployeeSlice, deleteEmployeeSlice, editEmployeeSlice, getEmployeesS
 import { CREATE_EMPLOYEE, DELETE_EMPLOYEE_BY_ID, GET_EMPLOYEES, GET_EMPLOYEE_BY_ID, UPDATE_EMPLOYEE_BY_ID } from '../types'
 import { put, takeEvery } from 'redux-saga/effects'
 
+export interface ResponseGenerator{
+    config?:any,
+    data?:any,
+    headers?:any,
+    request?:any,
+    status?:number,
+    statusText?:string
+}
+
 export function* getEmployeesSaga() {
-    const Employees = yield getEmployeesAPI()
+    const Employees:ResponseGenerator = yield getEmployeesAPI()
     yield put(getEmployeesSlice(Employees.data))
 }
 
-export function* getEmployeeByIdSaga(action) {
-    const emp=yield getEmployeeByIdAPI(action.id)
+export function* getEmployeeByIdSaga(action:any) {
+    const emp:ResponseGenerator=yield getEmployeeByIdAPI(action.id)
     yield put(setEmployeeSlice(emp.data))
 }
-export function* createEmployeeSaga(action) {
+export function* createEmployeeSaga(action:any) {
     console.log("the action",action.data)
     yield createEmployeeAPI(action.data)
     yield put(addEmployeeSlice(action.data))
 }
 
-export function* updateEmployeeSaga(action) {
+export function* updateEmployeeSaga(action:any) {
     console.log("action",action)
     yield updateEmployeeAPI(action.data)
     yield put(editEmployeeSlice(action.data))
 }
 
-export function* deleteEmployeeByIdSaga(action) {
+export function* deleteEmployeeByIdSaga(action:any) {
     console.log("the action",action)
     yield deleteEmployeeByIdAPI(action.id)
     yield put(deleteEmployeeSlice(action.id))
 }
 
-export function* watchEmployeesAsync() {
+export function* watchEmployeesAsync():any {
     yield takeEvery(GET_EMPLOYEES, getEmployeesSaga)
     yield takeEvery(GET_EMPLOYEE_BY_ID, getEmployeeByIdSaga)
     yield takeEvery(CREATE_EMPLOYEE, createEmployeeSaga)

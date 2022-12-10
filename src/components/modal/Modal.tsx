@@ -10,7 +10,14 @@ import {
   ModalTitle,
 } from "./modal.styles";
 
-const Modal = ({ title, footer, children, active, hideModal }) => {
+interface modal {
+  title: string;
+  footer: JSX.Element;
+  children: JSX.Element;
+  active: boolean;
+  hideModal: ()=>void;
+}
+const Modal = ({ title, footer, children, active, hideModal}:modal) => {
   return (
     <Fragment>
       {active && (

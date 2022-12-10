@@ -51,6 +51,29 @@ export const ModalBody = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom:2rem;
+  > input {
+    width: 16%;
+    height: 2.813rem;
+    border: solid 1px #e8e8e8;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-family: var(--font-1);
+    background: ${({ theme }) => theme.input};
+    transition: background 0.4s linear;
+    border-radius: 6px;
+    
+    &::placeholder {
+      font-size: 0.8rem;
+      font-family: var(--font-1);
+      color: ${({ theme }) => theme.holder};
+      transition: color 0.4s linear;
+    }
+
+    &:focus {
+      outline: solid 1px var(--primary-color-1);
+    }
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -71,13 +94,11 @@ export const ModalFooter = styled.div`
 `;
 
 export const Button = styled.button`
-  background: #7b2cbf;
+  background: ${({ theme }) => theme.primary};
   color: white;
   font-size: 1em;
   margin: 10px;
   padding: 5px 10px;
-  border: 2px solid #7b2cbf;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
 `;
-

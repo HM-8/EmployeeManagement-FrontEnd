@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import React from 'react'
 
 const SelectContainer = styled.div`
   > select {
     appearance: none;
     background-color: transparent;
-    border: none;
+    border: solid 1px #e8e8e8;
+    border-right:none;
     padding: 0 1em 0 0;
     margin: 0;
     width: 20.813rem;
@@ -19,7 +21,7 @@ const SelectContainer = styled.div`
 
   & {
     width: 15%;
-    border: solid 1px var(--neutral-color-1);
+    border: solid 1px #e8e8e8;
     border-radius: 6px;
     background: ${({ theme }) => theme.input};
     height: 2.813rem;
@@ -47,7 +49,13 @@ const SelectContainer = styled.div`
     border: solid 1px var(--primary-color-1);
   }
 `;
-const Select = ({ selectValue, handleChange }) => {
+
+interface SelectProps {
+  selectValue:string;
+  handleChange: (event:any) => void;
+}
+
+const Select = ({ selectValue, handleChange }:SelectProps) => {
   const types = [
     {
       id: 1,
