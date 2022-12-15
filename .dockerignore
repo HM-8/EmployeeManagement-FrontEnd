@@ -1,1 +1,4 @@
 node_modules
+Dockerfile.prod
+.dockerignore
+compose.yaml
